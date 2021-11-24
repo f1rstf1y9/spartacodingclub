@@ -54,6 +54,11 @@
         }
 
     </style>
+    <script>
+        function buy(){
+            alert('주문이 완료되었습니다.');
+        }
+    </script>
 </head>
 
 <body>
@@ -94,7 +99,7 @@
                 </div>
                 <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="">
             </div>
-            <button class="btn btn-primary" type="submit">주문하기</button>
+            <button onclick=buy() class="btn btn-primary" type="submit">주문하기</button>
         </div>
     </div>
 </body>
