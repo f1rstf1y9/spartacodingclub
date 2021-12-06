@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+
+    <style>
+        * {
+            font-family: 'Gugi', cursive;
+        }
+        .wrap {
+            margin: auto;
+            text-align: center;
+        }
+
+        .image {
+            margin-bottom: 30px;
+        }
+
+        .title {
+            text-align: left;
+            width: 600px;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        .title a {
+            font-size: 19px;
+        }
+
+        .form {
+            width: 600px;
+            margin: auto;
+        }
+
+        #rate {
+            color: blue;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function(){
+	        get_rate()
+        });
+
+        function get_rate() {
+            $('#rate').empty();
+            $.ajax({
+              type: "GET",
+              url: "http://spartacodingclub.shop/sparta_api/rate",
+              data: {},
+              success: function (response) {
+                let rate = response['rate'];
+
+                let temp_html = ``;
+                temp_html = `달러-원 환율: ${rate}`;
+                $('#rate').append(temp_html)
+              }
+            })
+        }
+
+        function buy(){
+            alert('주문이 완료되었습니다.');
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <img class="image" src="http://blog.ebaykorea.com/wp-content/uploads/2018/07/5-29-%EB%A9%94%EC%9D%B8.jpg" alt="LOVE YOURSELF TEAR" width="600px">
+        <div class="title">
+            <h1>앨범을 팝니다 <a>가격: 16,300원/권</a></h1>
+            <p>그룹 방탄소년단(BTS)이 출시한 정규 3집 ‘러브 유어셀프 전 ‘티어'(LOVE YOURSELF 轉 ‘Tear’)’가 발매된 이후 국내는 물론 전 세계적으로 음원, 앨범 차트 1위를 차지하고, 한국 가수 최초로 빌보드의 메인 앨범 차트인 ‘빌보드 200’ 1위를 차지하는 등 세계적으로 인기를 휩쓸었다.</p>
+            <p id="rate"></p>
+        </div>
+        <div class="form">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">주문자 이름</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="">
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">수량</div>
+                </div>
+                <select class="custom-select">
+                  <option selected>-- 수량을 선택하세요 --</option>
+                  <option value="1">1장</option>
+                  <option value="2">2장</option>
+                  <option value="3">3장</option>
+                  <option value="4">4장(1세트)</option>
+                </select>
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">주소</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="">
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">전화번호</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="">
+            </div>
+            <button onclick=buy() class="btn btn-primary" type="submit">주문하기</button>
+        </div>
+    </div>
+</body>
+
+</html>
